@@ -1,17 +1,11 @@
 import { ApiErrorResponse } from "./error.types";
 
-/**
- * Generic API Response wrapper
- */
 export interface ApiResponse<T> {
   data: T;
   status: number;
   statusText: string;
 }
 
-/**
- * API Request configuration
- */
 export interface ApiRequestConfig {
   method: "GET" | "POST" | "PUT" | "PATCH" | "DELETE";
   url: string;
@@ -20,9 +14,6 @@ export interface ApiRequestConfig {
   headers?: Record<string, string>;
 }
 
-/**
- * Pagination params (for future use)
- */
 export interface PaginationParams {
   page: number;
   size: number;
@@ -30,9 +21,6 @@ export interface PaginationParams {
   order?: "asc" | "desc";
 }
 
-/**
- * Paginated response (for future use)
- */
 export interface PaginatedResponse<T> {
   content: T[];
   page: number;
@@ -43,21 +31,11 @@ export interface PaginatedResponse<T> {
   first: boolean;
 }
 
-/**
- * API Success Response
- */
 export type ApiSuccessResponse<T> = ApiResponse<T>;
 
-/**
- * API Error Response (from backend)
- */
 export type ApiErrorResponseType = ApiErrorResponse;
 
-/**
- * Query key factory for React Query
- */
 export const queryKeys = {
-  // Characters
   characters: {
     all: ["characters"] as const,
     lists: () => [...queryKeys.characters.all, "list"] as const,
@@ -74,7 +52,6 @@ export const queryKeys = {
       [...queryKeys.characters.all, "school", school] as const,
   },
 
-  // Players
   players: {
     all: ["players"] as const,
     lists: () => [...queryKeys.players.all, "list"] as const,
@@ -88,7 +65,6 @@ export const queryKeys = {
       [...queryKeys.players.all, "jersey", number] as const,
   },
 
-  // Coaches
   coaches: {
     all: ["coaches"] as const,
     lists: () => [...queryKeys.coaches.all, "list"] as const,
@@ -98,7 +74,6 @@ export const queryKeys = {
     detail: (id: number) => [...queryKeys.coaches.details(), id] as const,
   },
 
-  // Management
   management: {
     all: ["management"] as const,
     lists: () => [...queryKeys.management.all, "list"] as const,
@@ -112,7 +87,6 @@ export const queryKeys = {
       [...queryKeys.management.all, "role", role] as const,
   },
 
-  // Fans
   fans: {
     all: ["fans"] as const,
     lists: () => [...queryKeys.fans.all, "list"] as const,
@@ -120,7 +94,6 @@ export const queryKeys = {
       [...queryKeys.fans.lists(), { filters }] as const,
   },
 
-  // Alumni
   alumni: {
     all: ["alumni"] as const,
     lists: () => [...queryKeys.alumni.all, "list"] as const,
@@ -131,7 +104,6 @@ export const queryKeys = {
       [...queryKeys.alumni.all, "school", schoolId] as const,
   },
 
-  // Rosters
   rosters: {
     all: ["rosters"] as const,
     details: () => [...queryKeys.rosters.all, "detail"] as const,
@@ -147,7 +119,6 @@ export const queryKeys = {
       [...queryKeys.rosters.detail(rosterId), "players", position] as const,
   },
 
-  // Schools
   schools: {
     all: ["schools"] as const,
     lists: () => [...queryKeys.schools.all, "list"] as const,

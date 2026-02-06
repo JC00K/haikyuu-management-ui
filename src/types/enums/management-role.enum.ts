@@ -7,9 +7,6 @@ export enum ManagementRole {
   MANAGER = "MANAGER",
 }
 
-/**
- * Get display name for ManagementRole
- */
 export const getManagementRoleDisplayName = (role: ManagementRole): string => {
   const displayNames: Record<ManagementRole, string> = {
     [ManagementRole.ADVISOR]: "Advisor",
@@ -18,8 +15,5 @@ export const getManagementRoleDisplayName = (role: ManagementRole): string => {
   return displayNames[role];
 };
 
-/**
- * Get all management roles as array
- */
 export const getAllManagementRoles = (): ManagementRole[] =>
   Object.values(ManagementRole);

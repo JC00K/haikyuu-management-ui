@@ -11,9 +11,6 @@ export enum CoachingStyle {
   POWER = "POWER",
 }
 
-/**
- * Get display name for CoachingStyle
- */
 export const getCoachingStyleDisplayName = (style: CoachingStyle): string => {
   const displayNames: Record<CoachingStyle, string> = {
     [CoachingStyle.NONCOACH]: "Non-Coach",
@@ -26,9 +23,6 @@ export const getCoachingStyleDisplayName = (style: CoachingStyle): string => {
   return displayNames[style];
 };
 
-/**
- * Get all coaching styles as array (excluding NONCOACH)
- */
 export const getAllCoachingStyles = (
   includeNonCoach = false,
 ): CoachingStyle[] => {

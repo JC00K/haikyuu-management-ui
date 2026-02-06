@@ -7,9 +7,6 @@ export enum CoachRole {
   ASSISTANT = "ASSISTANT",
 }
 
-/**
- * Get display name for CoachRole
- */
 export const getCoachRoleDisplayName = (role: CoachRole): string => {
   const displayNames: Record<CoachRole, string> = {
     [CoachRole.HEAD]: "Head Coach",
@@ -18,7 +15,4 @@ export const getCoachRoleDisplayName = (role: CoachRole): string => {
   return displayNames[role];
 };
 
-/**
- * Get all coach roles as array
- */
 export const getAllCoachRoles = (): CoachRole[] => Object.values(CoachRole);
