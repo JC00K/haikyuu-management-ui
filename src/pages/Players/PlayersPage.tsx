@@ -31,7 +31,6 @@ const PlayersPage = () => {
     (player) =>
       selectedPosition === "ALL" || player.position === selectedPosition,
   );
-
   // Calculate position counts
   const positionCounts = players?.reduce(
     (acc, player) => {
@@ -70,7 +69,6 @@ const PlayersPage = () => {
           <span>Add Player</span>
         </button>
       </div>
-
       {/* Stats Bar */}
       <div className={styles.statsBar}>
         <div className={styles.totalStat}>

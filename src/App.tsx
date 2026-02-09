@@ -7,26 +7,14 @@ import ManagementPage from "./pages/Management/ManagementPage";
 import RosterPage from "./pages/Roster/RosterPage";
 import SchoolDetailPage from "./pages/SchoolDetails/SchoolDetailsPage";
 import SchoolsPage from "./pages/Schools/SchoolsPage";
+import AllCharactersPage from "./pages/AllCharacters/AllCharactersPage";
+import PlayersPage from "./pages/Players/PlayersPage";
 
 const HomePage = () => (
   <div style={{ padding: "2rem" }}>
     <h1>🏐 Haikyuu Management System</h1>
     <p>Welcome! Start building your pages here.</p>
     <p>Navigate using the routes below to add more pages.</p>
-  </div>
-);
-
-const PlayersPage = () => (
-  <div style={{ padding: "2rem" }}>
-    <h1>Players Page</h1>
-    <p>Build your Players component here</p>
-  </div>
-);
-
-const AllCharactersPage = () => (
-  <div style={{ padding: "2rem" }}>
-    <h1>All Characters Page</h1>
-    <p>Build your All Characters component here</p>
   </div>
 );
 
