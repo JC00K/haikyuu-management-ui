@@ -26,6 +26,17 @@ export const useSchool = (schoolId: number) => {
 };
 
 /**
+ * Get all schools
+ */
+
+export const useSchools = () => {
+  return useQuery({
+    queryKey: queryKeys.schools.lists(),
+    queryFn: schoolService.getAllSchools,
+  });
+};
+
+/**
  * Get characters by school
  */
 export const useSchoolCharacters = (school: string) => {

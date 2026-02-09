@@ -21,6 +21,15 @@ export const schoolService = {
   },
 
   /**
+   * Get all schools
+   * GET /api/v1/schools/all
+   */
+
+  getAllSchools: (): Promise<SchoolDTO[]> => {
+    return get<SchoolDTO[]>(`${API_ENDPOINTS.SCHOOLS.BASE}/all`);
+  },
+
+  /**
    * Get detailed school information
    * GET /api/v1/schools/{school}/info
    */

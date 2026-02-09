@@ -1,4 +1,12 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import AlumniPage from "./pages/Alumni/AlumniPage";
+import CoachesPage from "./pages/Coaches/CoachesPage";
+import FansPage from "./pages/Fans/FansPage";
+import LineupBuilderPage from "./pages/LineupBuilder/LineupBuilderPage";
+import ManagementPage from "./pages/Management/ManagementPage";
+import RosterPage from "./pages/Roster/RosterPage";
+import SchoolDetailPage from "./pages/SchoolDetails/SchoolDetailsPage";
+import SchoolsPage from "./pages/Schools/SchoolsPage";
 
 const HomePage = () => (
   <div style={{ padding: "2rem" }}>
@@ -66,9 +74,6 @@ function App() {
           <Route path="/" element={<HomePage />} />
           <Route path="/characters" element={<AllCharactersPage />} />
           <Route path="/players" element={<PlayersPage />} />
-
-          {/* Add more routes as you build components */}
-          {/* 
           <Route path="/coaches" element={<CoachesPage />} />
           <Route path="/management" element={<ManagementPage />} />
           <Route path="/fans" element={<FansPage />} />
@@ -77,7 +82,6 @@ function App() {
           <Route path="/schools/:schoolId" element={<SchoolDetailPage />} />
           <Route path="/roster/:rosterId" element={<RosterPage />} />
           <Route path="/lineup/:rosterId" element={<LineupBuilderPage />} />
-          */}
         </Routes>
 
         {/* AI Chat Widget - Coming Soon */}
