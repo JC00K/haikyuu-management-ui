@@ -9,14 +9,7 @@ import SchoolDetailPage from "./pages/SchoolDetails/SchoolDetailsPage";
 import SchoolsPage from "./pages/Schools/SchoolsPage";
 import AllCharactersPage from "./pages/AllCharacters/AllCharactersPage";
 import PlayersPage from "./pages/Players/PlayersPage";
-
-const HomePage = () => (
-  <div style={{ padding: "2rem" }}>
-    <h1>🏐 Haikyuu Management System</h1>
-    <p>Welcome! Start building your pages here.</p>
-    <p>Navigate using the routes below to add more pages.</p>
-  </div>
-);
+import HomePage from "./pages/Home/HomePage";
 
 function App() {
   return (

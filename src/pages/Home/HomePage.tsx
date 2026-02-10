@@ -1,7 +1,15 @@
 // src/pages/HomePage.tsx
 
 import { Link } from "react-router-dom";
-import { Users, School, Trophy, UserCircle } from "lucide-react";
+import {
+  Users,
+  School,
+  Trophy,
+  UserCircle,
+  Heart,
+  GraduationCap,
+  Briefcase,
+} from "lucide-react";
 import { useCharacters } from "@/hooks/useCharacters";
 import { usePlayers } from "@/hooks/usePlayers";
 import { useCoaches } from "@/hooks/useCoaches";
@@ -64,32 +72,53 @@ const HomePage = () => {
 
   const quickActions = [
     {
+      icon: Users,
+      label: "All Characters",
+      description: "Browse all characters",
+      link: "/characters",
+      color: "#FF6600",
+    },
+    {
       icon: Trophy,
-      label: "Add Player",
-      description: "Create a new player",
+      label: "Players",
+      description: "View all players",
       link: "/players",
       color: "#FF6600",
     },
     {
       icon: UserCircle,
-      label: "Add Coach",
-      description: "Create a new coach",
+      label: "Coaches",
+      description: "View all coaches",
       link: "/coaches",
       color: "#1976D2",
     },
     {
-      icon: School,
-      label: "Add School",
-      description: "Create a new school",
-      link: "/schools",
+      icon: Briefcase,
+      label: "Management",
+      description: "View management staff",
+      link: "/management",
       color: "#7B1FA2",
     },
     {
-      icon: Users,
-      label: "View All Characters",
-      description: "Browse all characters",
-      link: "/characters",
-      color: "#2E7D32",
+      icon: Heart,
+      label: "Fans",
+      description: "View all fans",
+      link: "/fans",
+      color: "#E91E63",
+    },
+    {
+      icon: GraduationCap,
+      label: "Alumni",
+      description: "View alumni members",
+      link: "/alumni",
+      color: "#795548",
+    },
+    {
+      icon: School,
+      label: "Schools",
+      description: "View all schools",
+      link: "/schools",
+      color: "#7B1FA2",
     },
   ];
 
