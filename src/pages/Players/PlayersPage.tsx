@@ -3,6 +3,8 @@ import { Plus } from "lucide-react";
 import { usePlayers } from "@/hooks/usePlayers";
 import { PlayerCard } from "@/components/common/Card/Player/PlayerCard";
 import { LoadingSpinner } from "@/components/common/Loading/LoadingSpinner";
+import { Modal } from "@/components/common/Modal/Modal";
+import { PlayerForm } from "@/components/forms/PlayerForm/PlayerForm";
 import { Position } from "@/types/enums";
 import {
   getPositionDisplayName,
@@ -25,12 +27,14 @@ const PlayersPage = () => {
   const [selectedPosition, setSelectedPosition] = useState<Position | "ALL">(
     "ALL",
   );
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   // Filter players by position
   const filteredPlayers = players?.filter(
     (player) =>
       selectedPosition === "ALL" || player.position === selectedPosition,
   );
+
   // Calculate position counts
   const positionCounts = players?.reduce(
     (acc, player) => {
@@ -64,11 +68,14 @@ const PlayersPage = () => {
           <h1 className={styles.title}>Players</h1>
           <p className={styles.subtitle}>Manage your volleyball players</p>
         </div>
-        <button className={styles.addButton}>
+        <button
+          className={styles.addButton}
+          onClick={() => setIsModalOpen(true)}>
           <Plus size={20} />
           <span>Add Player</span>
         </button>
       </div>
+
       {/* Stats Bar */}
       <div className={styles.statsBar}>
         <div className={styles.totalStat}>
@@ -156,6 +163,20 @@ const PlayersPage = () => {
           </button>
         </div>
       )}
+
+      {/* Add Player Modal */}
+      <Modal
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+        title="Add New Player"
+        size="lg">
+        <PlayerForm
+          onSuccess={() => {
+            setIsModalOpen(false);
+          }}
+          onCancel={() => setIsModalOpen(false)}
+        />
+      </Modal>
     </div>
   );
 };

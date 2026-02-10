@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { PlayerDTO } from "@/types/dto";
 import { getPositionColor } from "@/lib/theme";
 import {
@@ -26,6 +27,11 @@ export const PlayerCard = ({ player, onClick, className }: PlayerCardProps) => {
   const positionColor = getPositionColor(player.position);
   const positionName = getPositionDisplayName(player.position);
   const positionAbbr = getPositionAbbreviation(player.position);
+  const [imageError, setImageError] = useState(false);
+
+  // Check if image URL is valid (not null, not empty)
+  const hasValidImage =
+    player.imgUrl && player.imgUrl.trim() !== "" && !imageError;
 
   return (
     <div
@@ -40,12 +46,16 @@ export const PlayerCard = ({ player, onClick, className }: PlayerCardProps) => {
 
       {/* Image */}
       <div className={styles.imageContainer}>
-        {player.imgUrl ? (
+        {hasValidImage ? (
           <img
-            src={player.imgUrl}
+            src={`/api/v1/proxy/image?url=${encodeURIComponent(player.imgUrl)}`}
             alt={player.name}
             className={styles.image}
             loading="lazy"
+            onError={() => {
+              console.error("Image failed to load for", player.name);
+              setImageError(true);
+            }}
           />
         ) : (
           <div className={styles.placeholder}>

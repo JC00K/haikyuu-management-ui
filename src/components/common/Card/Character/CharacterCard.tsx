@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { CharacterDTO } from "@/types/dto";
 import { getRoleColor } from "@/lib/theme";
 import { cn, formatHeight } from "@/lib/utils";
@@ -24,6 +25,11 @@ export const CharacterCard = ({
   className,
 }: CharacterCardProps) => {
   const roleColor = getRoleColor(character.role);
+  const [imageError, setImageError] = useState(false);
+
+  // Check if image URL is valid (not null, not empty)
+  const hasValidImage =
+    character.imgUrl && character.imgUrl.trim() !== "" && !imageError;
 
   return (
     <div
@@ -31,12 +37,16 @@ export const CharacterCard = ({
       onClick={onClick}>
       {/* Image */}
       <div className={styles.imageContainer}>
-        {character.imgUrl ? (
+        {hasValidImage ? (
           <img
-            src={character.imgUrl}
+            src={`/api/v1/proxy/image?url=${encodeURIComponent(character.imgUrl)}`}
             alt={character.name}
             className={styles.image}
             loading="lazy"
+            onError={() => {
+              console.error("Image failed to load for", character.name);
+              setImageError(true);
+            }}
           />
         ) : (
           <div className={styles.placeholder}>

@@ -1,5 +1,16 @@
 import { Link, useLocation } from "react-router-dom";
-import { Menu, X, Home, Users, School, UserCircle, Trophy } from "lucide-react";
+import {
+  Menu,
+  X,
+  Home,
+  Users,
+  School,
+  UserCircle,
+  Trophy,
+  Briefcase,
+  Heart,
+  GraduationCap,
+} from "lucide-react";
 import { useState } from "react";
 import { cn } from "@/lib/utils";
 import styles from "./Navigation.module.css";
@@ -22,6 +33,9 @@ export const Navigation = () => {
     { to: "/characters", label: "All Characters", icon: Users },
     { to: "/players", label: "Players", icon: Trophy },
     { to: "/coaches", label: "Coaches", icon: UserCircle },
+    { to: "/management", label: "Management", icon: Briefcase },
+    { to: "/fans", label: "Fans", icon: Heart },
+    { to: "/alumni", label: "Alumni", icon: GraduationCap },
     { to: "/schools", label: "Schools", icon: School },
   ];
 
