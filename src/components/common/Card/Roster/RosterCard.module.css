@@ -1,0 +1,227 @@
+.card {
+  background: white;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-card);
+  transition: all var(--transition-base);
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.card.clickable {
+  cursor: pointer;
+}
+
+.card.clickable:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-card-hover);
+}
+
+/* Header */
+.header {
+  background: linear-gradient(
+    135deg,
+    var(--primary-color) 0%,
+    var(--secondary-color) 100%
+  );
+  padding: var(--spacing-lg);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--spacing-md);
+  color: white;
+  position: relative;
+  justify-content: center;
+}
+
+.iconContainer {
+  width: 80px;
+  height: 80px;
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  backdrop-filter: blur(10px);
+  border: 2px solid rgba(255, 255, 255, 0.3);
+}
+
+.iconContainer svg {
+  color: white;
+  width: 40px;
+  height: 40px;
+}
+
+.headerText {
+  font-family: "Bebas Neue", sans-serif;
+  font-size: 1.5rem;
+  text-align: center;
+  letter-spacing: 0.05em;
+  color: white;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+/* Content */
+.content {
+  padding: var(--spacing-lg);
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-lg);
+  flex: 1;
+}
+
+/* Main Stat */
+.mainStat {
+  background: linear-gradient(
+    135deg,
+    rgba(123, 31, 162, 0.08) 0%,
+    rgba(94, 53, 177, 0.08) 100%
+  );
+  padding: var(--spacing-lg);
+  border-radius: var(--radius-md);
+  text-align: center;
+  border: 2px solid rgba(123, 31, 162, 0.1);
+}
+
+.statNumber {
+  font-family: "Bebas Neue", sans-serif;
+  font-size: 3rem;
+  color: #1a1a1a;
+  line-height: 1;
+  margin-bottom: var(--spacing-xs);
+}
+
+.statLabel {
+  font-size: 0.875rem;
+  color: var(--color-text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-weight: 600;
+}
+
+/* Breakdown */
+.breakdown {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+}
+
+.breakdownItem {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-md);
+  padding: var(--spacing-md);
+  background: var(--color-bg-paper);
+  border-radius: var(--radius-md);
+  border-left: 4px solid #999999;
+  transition: all var(--transition-fast);
+}
+
+.breakdownItem:hover {
+  background: var(--color-bg-paper);
+  border-left-width: 5px;
+}
+
+.breakdownDot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
+}
+
+.breakdownLabel {
+  flex: 1;
+  font-size: 0.875rem;
+  color: var(--color-text-secondary);
+  font-weight: 600;
+}
+
+.breakdownValue {
+  font-family: "Bebas Neue", sans-serif;
+  font-size: 1.5rem;
+  color: #1a1a1a;
+  line-height: 1;
+}
+
+/* Empty State */
+.empty {
+  padding: var(--spacing-lg);
+  text-align: center;
+  background: var(--color-bg-paper);
+  border-radius: var(--radius-md);
+  border: 2px dashed var(--color-divider);
+}
+
+.empty p {
+  font-size: 0.875rem;
+  color: var(--color-text-secondary);
+  margin: 0;
+  font-style: italic;
+}
+
+/* Footer */
+.footer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-sm);
+  padding: var(--spacing-md);
+  background: linear-gradient(
+    135deg,
+    rgba(123, 31, 162, 0.08) 0%,
+    rgba(94, 53, 177, 0.08) 100%
+  );
+  border-radius: var(--radius-md);
+  border-top: 1px solid var(--color-divider);
+  margin-top: auto;
+}
+
+.footerIcon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #1a1a1a;
+}
+
+.footerIcon svg {
+  width: 16px;
+  height: 16px;
+}
+
+.footer span {
+  font-size: 0.875rem;
+  color: #1a1a1a;
+  font-weight: 600;
+}
+
+/* Responsive */
+@media (max-width: 640px) {
+  .header {
+    padding: var(--spacing-md);
+  }
+
+  .iconContainer {
+    width: 60px;
+    height: 60px;
+  }
+
+  .iconContainer svg {
+    width: 30px;
+    height: 30px;
+  }
+
+  .headerText {
+    font-size: 1.25rem;
+  }
+
+  .statNumber {
+    font-size: 2.5rem;
+  }
+
+  .content {
+    padding: var(--spacing-md);
+    gap: var(--spacing-md);
+  }
+}

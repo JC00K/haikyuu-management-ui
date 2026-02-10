@@ -1,6 +1,6 @@
 import { get, patch } from "../client";
 import { API_ENDPOINTS } from "../../constants/api.constants";
-import { RosterDTO, PlayerDTO, CoachDTO, ManagementDTO } from "../../types/dto";
+import { RosterDTO, RosterWithId, PlayerDTO, CoachDTO, ManagementDTO } from "../../types/dto";
 import { Position } from "../../types/enums";
 
 export const rosterService = {
@@ -9,8 +9,8 @@ export const rosterService = {
    * GET /api/v1/rosters
    */
 
-  getAll: async (): Promise<RosterDTO[]> => {
-    return get<RosterDTO[]>(API_ENDPOINTS.ROSTERS.ALL());
+  getAll: async (): Promise<RosterWithId[]> => {
+    return get<RosterWithId[]>(API_ENDPOINTS.ROSTERS.ALL());
   },
 
   /**

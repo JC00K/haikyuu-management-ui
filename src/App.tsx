@@ -7,6 +7,7 @@ import FansPage from "./pages/Fans/FansPage";
 import LineupBuilderPage from "./pages/LineupBuilder/LineupBuilderPage";
 import ManagementPage from "./pages/Management/ManagementPage";
 import RosterPage from "./pages/Roster/RosterPage";
+import RostersPage from "./pages/Rosters/RostersPage";
 import SchoolDetailPage from "./pages/SchoolDetails/SchoolDetailsPage";
 import SchoolsPage from "./pages/Schools/SchoolsPage";
 import AllCharactersPage from "./pages/AllCharacters/AllCharactersPage";
@@ -38,7 +39,7 @@ function App() {
               <Route path="/alumni" element={<AlumniPage />} />
               <Route path="/schools" element={<SchoolsPage />} />
               <Route path="/schools/:schoolId" element={<SchoolDetailPage />} />
-              <Route path="/rosters" element={<RosterPage />} />
+              <Route path="/rosters" element={<RostersPage />} />
               <Route path="/roster/:rosterId" element={<RosterPage />} />
               <Route path="/lineup/:rosterId" element={<LineupBuilderPage />} />
             </Routes>
