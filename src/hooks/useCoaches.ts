@@ -15,6 +15,17 @@ export const useCoaches = () => {
 };
 
 /**
+ * Get coach by ID
+ */
+export const useCoach = (id: number, options?: { enabled?: boolean }) => {
+  return useQuery({
+    queryKey: queryKeys.coaches.detail(id),
+    queryFn: () => coachService.getById(id),
+    enabled: options?.enabled !== false && !!id,
+  });
+};
+
+/**
  * Create a new coach
  */
 export const useCreateCoach = () => {

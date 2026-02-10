@@ -15,6 +15,20 @@ export const useAlumni = () => {
 };
 
 /**
+ * Get alumni member by ID
+ */
+export const useAlumniMember = (
+  id: number,
+  options?: { enabled?: boolean },
+) => {
+  return useQuery({
+    queryKey: queryKeys.alumni.detail(id),
+    queryFn: () => alumniService.getById(id),
+    enabled: options?.enabled !== false && !!id,
+  });
+};
+
+/**
  * Get all former players
  */
 export const useFormerPlayers = () => {

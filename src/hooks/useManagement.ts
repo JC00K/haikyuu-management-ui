@@ -16,6 +16,20 @@ export const useManagement = () => {
 };
 
 /**
+ * Get management member by ID
+ */
+export const useManagementMember = (
+  id: number,
+  options?: { enabled?: boolean },
+) => {
+  return useQuery({
+    queryKey: queryKeys.management.detail(id),
+    queryFn: () => managementService.getById(id),
+    enabled: options?.enabled !== false && !!id,
+  });
+};
+
+/**
  * Get management by school ID
  */
 export const useManagementBySchool = (schoolId: number) => {

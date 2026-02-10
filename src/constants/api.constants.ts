@@ -70,20 +70,21 @@ export const API_ENDPOINTS = {
 
   // Roster endpoints
   ROSTERS: {
-    BY_ID: (rosterId: number) => `/v1/roster/get_roster_by_id/${rosterId}`,
-    PLAYERS: (rosterId: number) => `/v1/roster/${rosterId}/get_players`,
-    COACHES: (rosterId: number) => `/v1/roster/${rosterId}/get_coaches`,
-    MANAGEMENT: (rosterId: number) => `/v1/roster/${rosterId}/get_management`,
+    ALL: () => "/v1/rosters/all",
+    BY_ID: (rosterId: number) => `/v1/rosters/get_roster_by_id/${rosterId}`,
+    PLAYERS: (rosterId: number) => `/v1/rosters/${rosterId}/get_players`,
+    COACHES: (rosterId: number) => `/v1/rosters/${rosterId}/get_coaches`,
+    MANAGEMENT: (rosterId: number) => `/v1/rosters/${rosterId}/get_management`,
     PLAYERS_BY_POSITION: (rosterId: number, position: string) =>
-      `/v1/roster/${rosterId}/get_players_by_position/${position}`,
+      `/v1/rosters/${rosterId}/get_players_by_position/${position}`,
     ADD_PLAYER: (rosterId: number, playerId: number) =>
-      `/v1/roster/${rosterId}/add_player_to_roster/${playerId}`,
+      `/v1/rosters/${rosterId}/add_player_to_roster/${playerId}`,
     ADD_COACH: (rosterId: number, coachId: number) =>
-      `/v1/roster/${rosterId}/add_coach_to_roster/${coachId}`,
+      `/v1/rosters/${rosterId}/add_coach_to_roster/${coachId}`,
     ADD_MANAGEMENT: (rosterId: number, managementId: number) =>
-      `/v1/roster/${rosterId}/add_management_to_roster/${managementId}`,
+      `/v1/rosters/${rosterId}/add_management_to_roster/${managementId}`,
     REMOVE_CHARACTER: (rosterId: number, characterId: number) =>
-      `/v1/roster/${rosterId}/remove_character_from_roster/${characterId}`,
+      `/v1/rosters/${rosterId}/remove_character_from_roster/${characterId}`,
   },
 
   // School endpoints

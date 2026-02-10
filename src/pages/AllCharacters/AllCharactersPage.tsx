@@ -102,14 +102,7 @@ const AllCharactersPage = () => {
       {filteredCharacters && filteredCharacters.length > 0 ? (
         <div className={styles.grid}>
           {filteredCharacters.map((character) => (
-            <CharacterCard
-              key={character.id}
-              character={character}
-              onClick={() => {
-                // TODO: Open character detail modal
-                console.log("Character clicked:", character);
-              }}
-            />
+            <CharacterCard key={character.id} character={character} />
           ))}
         </div>
       ) : (

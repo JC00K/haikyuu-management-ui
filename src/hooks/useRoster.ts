@@ -5,6 +5,16 @@ import { Position } from "@/types/enums";
 import toast from "react-hot-toast";
 
 /**
+ * Get all rosters
+ */
+export const useRosters = () => {
+  return useQuery({
+    queryKey: queryKeys.rosters.all,
+    queryFn: rosterService.getAll,
+  });
+};
+
+/**
  * Get roster by ID
  */
 export const useRoster = (rosterId: number) => {

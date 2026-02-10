@@ -10,6 +10,7 @@ import {
   Briefcase,
   Heart,
   GraduationCap,
+  ClipboardList,
 } from "lucide-react";
 import { useState } from "react";
 import { cn } from "@/lib/utils";
@@ -30,13 +31,14 @@ export const Navigation = () => {
 
   const navLinks = [
     { to: "/", label: "Home", icon: Home },
-    { to: "/characters", label: "All Characters", icon: Users },
+    { to: "/characters", label: "Characters", icon: Users },
     { to: "/players", label: "Players", icon: Trophy },
     { to: "/coaches", label: "Coaches", icon: UserCircle },
     { to: "/management", label: "Management", icon: Briefcase },
     { to: "/fans", label: "Fans", icon: Heart },
     { to: "/alumni", label: "Alumni", icon: GraduationCap },
     { to: "/schools", label: "Schools", icon: School },
+    { to: "/rosters", label: "Rosters", icon: ClipboardList },
   ];
 
   const isActive = (path: string) => {

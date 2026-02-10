@@ -1,3 +1,7 @@
+// src/components/common/Card/SchoolCard.tsx
+
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { SchoolDTO } from "@/types/dto";
 import { cn } from "@/lib/utils";
 import { School, MapPin } from "lucide-react";
@@ -17,34 +21,59 @@ interface SchoolCardProps {
  * - School (school icon)
  * - MapPin (location icon)
  *
- * @param school - School lookup data
+ * @param school - School data (full SchoolDTO)
  * @param onClick - Optional click handler
  * @param className - Additional CSS classes
  */
 export const SchoolCard = ({ school, onClick, className }: SchoolCardProps) => {
-  // Parse colors from string (format: "Color1, Color2")
-  const colors = school.colors?.split(",").map((c) => c.trim()) || [
+  const navigate = useNavigate();
+  const [imageError, setImageError] = useState(false);
+
+  // Parse colors from string (format: "White / Orange / Black")
+  const colors = school.colors?.split("/").map((c) => c.trim()) || [
     "#1a1a1a",
     "#FF6600",
   ];
   const primaryColor = colors[0];
   const secondaryColor = colors[1] || colors[0];
 
+  const handleClick = () => {
+    if (onClick) {
+      onClick();
+    } else {
+      navigate(`/schools/${school.id}`);
+    }
+  };
+
   return (
     <div
-      className={cn(styles.card, onClick && styles.clickable, className)}
-      onClick={onClick}
+      className={cn(styles.card, styles.clickable, className)}
+      onClick={handleClick}
       style={
         {
           "--primary-color": primaryColor,
           "--secondary-color": secondaryColor,
         } as React.CSSProperties
       }>
+      {/* Image */}
+      <div className={styles.imageContainer}>
+        {!imageError ? (
+          <img
+            src={`/api/v1/proxy/image?url=${encodeURIComponent(school.imgUrl)}`}
+            alt={school.name}
+            className={styles.image}
+            loading="lazy"
+            onError={() => setImageError(true)}
+          />
+        ) : (
+          <div className={styles.placeholder}>
+            <School size={48} />
+          </div>
+        )}
+      </div>
+
       {/* Header with gradient */}
       <div className={styles.header}>
-        <div className={styles.schoolIcon}>
-          <School size={32} />
-        </div>
         <h3 className={styles.schoolName}>{school.name}</h3>
       </div>
 

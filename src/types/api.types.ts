@@ -92,6 +92,8 @@ export const queryKeys = {
     lists: () => [...queryKeys.fans.all, "list"] as const,
     list: (filters?: Record<string, unknown>) =>
       [...queryKeys.fans.lists(), { filters }] as const,
+    details: () => [...queryKeys.fans.all, "detail"] as const,
+    detail: (id: number) => [...queryKeys.fans.details(), id] as const,
   },
 
   alumni: {
@@ -99,6 +101,8 @@ export const queryKeys = {
     lists: () => [...queryKeys.alumni.all, "list"] as const,
     list: (filters?: Record<string, unknown>) =>
       [...queryKeys.alumni.lists(), { filters }] as const,
+    details: () => [...queryKeys.alumni.all, "detail"] as const,
+    detail: (id: number) => [...queryKeys.alumni.details(), id] as const,
     formerPlayers: () => [...queryKeys.alumni.all, "formerPlayers"] as const,
     bySchool: (schoolId: number) =>
       [...queryKeys.alumni.all, "school", schoolId] as const,

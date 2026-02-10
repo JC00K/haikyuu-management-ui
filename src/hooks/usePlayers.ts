@@ -16,6 +16,17 @@ export const usePlayers = () => {
 };
 
 /**
+ * Get player by ID
+ */
+export const usePlayer = (id: number, options?: { enabled?: boolean }) => {
+  return useQuery({
+    queryKey: queryKeys.players.detail(id),
+    queryFn: () => playerService.getById(id),
+    enabled: options?.enabled !== false && !!id,
+  });
+};
+
+/**
  * Get players by position
  */
 export const usePlayersByPosition = (position: Position) => {

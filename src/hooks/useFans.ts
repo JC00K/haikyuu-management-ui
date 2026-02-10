@@ -15,6 +15,17 @@ export const useFans = () => {
 };
 
 /**
+ * Get fan by ID
+ */
+export const useFan = (id: number, options?: { enabled?: boolean }) => {
+  return useQuery({
+    queryKey: queryKeys.fans.detail(id),
+    queryFn: () => fanService.getById(id),
+    enabled: options?.enabled !== false && !!id,
+  });
+};
+
+/**
  * Create a new fan
  */
 export const useCreateFan = () => {
