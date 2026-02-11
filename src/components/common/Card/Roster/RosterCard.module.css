@@ -20,11 +20,8 @@
 
 /* Header */
 .header {
-  background: linear-gradient(
-    135deg,
-    var(--primary-color) 0%,
-    var(--secondary-color) 100%
-  );
+  /* Uses --color-pattern: diagonal split for 2 colors, horizontal stripes for 3+ */
+  background: var(--color-pattern);
   padding: var(--spacing-lg);
   display: flex;
   flex-direction: column;
@@ -73,11 +70,7 @@
 
 /* Main Stat */
 .mainStat {
-  background: linear-gradient(
-    135deg,
-    rgba(123, 31, 162, 0.08) 0%,
-    rgba(94, 53, 177, 0.08) 100%
-  );
+  background: rgba(123, 31, 162, 0.08);
   padding: var(--spacing-lg);
   border-radius: var(--radius-md);
   text-align: center;
@@ -114,7 +107,6 @@
   padding: var(--spacing-md);
   background: var(--color-bg-paper);
   border-radius: var(--radius-md);
-  border-left: 4px solid #999999;
   transition: all var(--transition-fast);
 }
 
@@ -168,11 +160,7 @@
   justify-content: center;
   gap: var(--spacing-sm);
   padding: var(--spacing-md);
-  background: linear-gradient(
-    135deg,
-    rgba(123, 31, 162, 0.08) 0%,
-    rgba(94, 53, 177, 0.08) 100%
-  );
+  background: rgba(123, 31, 162, 0.08);
   border-radius: var(--radius-md);
   border-top: 1px solid var(--color-divider);
   margin-top: auto;

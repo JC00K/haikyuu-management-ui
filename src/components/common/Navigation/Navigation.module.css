@@ -1,3 +1,5 @@
+/* src/components/common/Navigation/Navigation.module.css */
+
 .nav {
   background: linear-gradient(
     135deg,
@@ -12,9 +14,9 @@
 }
 
 .container {
-  max-width: 1280px;
+  max-width: 1200px;
   margin: 0 auto;
-  padding: 0 var(--spacing-md);
+  padding: 0 var(--spacing-lg);
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -50,10 +52,11 @@
 /* Desktop Navigation */
 .navLinks {
   display: flex;
-  gap: var(--spacing-lg);
+  gap: var(--spacing-sm);
   list-style: none;
   margin: 0;
   padding: 0;
+  align-items: center;
 }
 
 .navLink {
@@ -64,10 +67,11 @@
   text-decoration: none;
   font-weight: 600;
   font-size: 0.95rem;
-  padding: var(--spacing-sm) var(--spacing-md);
+  padding: var(--spacing-sm) var(--spacing-sm);
   border-radius: var(--radius-md);
   transition: all var(--transition-fast);
   border-bottom: 2px solid transparent;
+  white-space: nowrap;
 }
 
 .navLink:hover {

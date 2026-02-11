@@ -43,6 +43,27 @@ export const RosterCard = ({
   const primaryColor = colors[0];
   const secondaryColor = colors[1] || colors[0];
 
+  // Create stripe pattern for 3+ colors, diagonal split for 2 colors
+  const createColorPattern = () => {
+    if (colors.length === 2) {
+      // Diagonal split: 2 triangles
+      return `linear-gradient(135deg, ${colors[0]} 50%, ${colors[1]} 50%)`;
+    } else if (colors.length >= 3) {
+      // Diagonal stripes at 45 degree angle
+      const stripeHeight = 100 / colors.length;
+      const gradientStops = colors
+        .map((color, index) => {
+          const start = index * stripeHeight;
+          const end = (index + 1) * stripeHeight;
+          return `${color} ${start}%, ${color} ${end}%`;
+        })
+        .join(", ");
+      return `linear-gradient(135deg, ${gradientStops})`;
+    }
+    // Fallback for single color
+    return colors[0];
+  };
+
   const handleClick = () => {
     if (onClick) {
       onClick();
@@ -58,6 +79,7 @@ export const RosterCard = ({
       style={{
         "--primary-color": primaryColor,
         "--secondary-color": secondaryColor,
+        "--color-pattern": createColorPattern(),
       } as React.CSSProperties}>
       {/* Icon Header */}
       <div className={styles.header}>
