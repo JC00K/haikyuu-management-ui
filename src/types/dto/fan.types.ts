@@ -1,3 +1,4 @@
+import { Year } from "../enums";
 import { Role } from "../enums/role.enum";
 
 /**
@@ -16,6 +17,8 @@ export interface FanDTO {
 
   /** Age */
   age: number;
+
+  year: Year;
 
   /** Role (should always be FAN) */
   role: Role;

@@ -22,6 +22,15 @@ export const playerService = {
   },
 
   /**
+   * Get player by ID
+   * GET /api/v1/players/{id}
+   */
+
+  getById: async (id: number): Promise<PlayerDTO> => {
+    return get<PlayerDTO>(`/players/${id}`);
+  },
+
+  /**
    * Get players by position
    * GET /api/v1/players/position/{position}
    */

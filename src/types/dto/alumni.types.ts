@@ -1,6 +1,7 @@
 import { Role } from "../enums/role.enum";
 import { Position } from "../enums/position.enum";
 import { CoachingStyle } from "../enums/coaching-style.enum";
+import { Year } from "../enums";
 
 /**
  * Alumni DTO
@@ -20,6 +21,8 @@ export interface AlumniDTO {
 
   /** Age */
   age: number;
+
+  year: Year;
 
   /** Role (should always be ALUMNI) */
   role: Role;

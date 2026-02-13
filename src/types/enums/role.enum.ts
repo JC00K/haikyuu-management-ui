@@ -10,9 +10,6 @@ export enum Role {
   ALUMNI = "ALUMNI",
 }
 
-/**
- * Get display name for Role
- */
 export const getRoleDisplayName = (role: Role): string => {
   const displayNames: Record<Role, string> = {
     [Role.PLAYER]: "Player",
@@ -24,7 +21,4 @@ export const getRoleDisplayName = (role: Role): string => {
   return displayNames[role];
 };
 
-/**
- * Get all roles as array
- */
 export const getAllRoles = (): Role[] => Object.values(Role);

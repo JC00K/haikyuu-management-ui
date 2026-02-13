@@ -1,6 +1,7 @@
 import { Role } from "../enums/role.enum";
 import { CoachRole } from "../enums/coach-role.enum";
 import { CoachingStyle } from "../enums/coaching-style.enum";
+import { Year } from "../enums/year.enum";
 
 /**
  * Coach DTO
@@ -21,6 +22,8 @@ export interface CoachDTO {
 
   /** Role (should always be COACH) */
   role: Role;
+
+  year: Year;
 
   /** School ID */
   schoolId: number;

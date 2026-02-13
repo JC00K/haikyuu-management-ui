@@ -11,9 +11,6 @@ export enum Position {
   NONE = "NONE",
 }
 
-/**
- * Get display name for Position
- */
 export const getPositionDisplayName = (position: Position): string => {
   const displayNames: Record<Position, string> = {
     [Position.SETTER]: "Setter",
@@ -26,9 +23,6 @@ export const getPositionDisplayName = (position: Position): string => {
   return displayNames[position];
 };
 
-/**
- * Get position abbreviation
- */
 export const getPositionAbbreviation = (position: Position): string => {
   const abbreviations: Record<Position, string> = {
     [Position.SETTER]: "S",
@@ -41,9 +35,6 @@ export const getPositionAbbreviation = (position: Position): string => {
   return abbreviations[position];
 };
 
-/**
- * Get all positions as array (excluding NONE)
- */
 export const getAllPositions = (includeNone = false): Position[] => {
   const positions = Object.values(Position);
   return includeNone ? positions : positions.filter((p) => p !== Position.NONE);

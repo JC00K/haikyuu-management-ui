@@ -9,9 +9,6 @@ export enum Year {
   NONSTUDENT = "NONSTUDENT",
 }
 
-/**
- * Get display name for Year
- */
 export const getYearDisplayName = (year: Year): string => {
   const displayNames: Record<Year, string> = {
     [Year.FIRST]: "1st Year",
@@ -22,9 +19,6 @@ export const getYearDisplayName = (year: Year): string => {
   return displayNames[year];
 };
 
-/**
- * Get numeric value for Year (useful for sorting)
- */
 export const getYearNumericValue = (year: Year): number => {
   const values: Record<Year, number> = {
     [Year.FIRST]: 1,
@@ -35,7 +29,4 @@ export const getYearNumericValue = (year: Year): number => {
   return values[year];
 };
 
-/**
- * Get all years as array
- */
 export const getAllYears = (): Year[] => Object.values(Year);

@@ -27,6 +27,7 @@ export interface RosterWithId extends RosterDTO {
   id: number;
   schoolId: number;
   schoolName: string;
+  schoolColors?: string;
 }
 
 /**
