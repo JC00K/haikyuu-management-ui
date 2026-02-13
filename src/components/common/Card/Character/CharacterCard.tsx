@@ -35,7 +35,6 @@ export const CharacterCard = ({
     <div
       className={cn(styles.card, onClick && styles.clickable, className)}
       onClick={onClick}>
-      {/* Image */}
       <div className={styles.imageContainer}>
         {hasValidImage ? (
           <img
