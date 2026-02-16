@@ -56,7 +56,17 @@
   text-align: center;
   letter-spacing: 0.05em;
   color: white;
-  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  /* Strong black outline using multiple text-shadows */
+  text-shadow:
+    -2px -2px 0 #000,
+    2px -2px 0 #000,
+    -2px 2px 0 #000,
+    2px 2px 0 #000,
+    0px 2px 0 #000,
+    2px 0px 0 #000,
+    0px -2px 0 #000,
+    -2px 0px 0 #000,
+    0 4px 8px rgba(0, 0, 0, 0.8);
 }
 
 /* Content */

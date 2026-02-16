@@ -1,74 +1,70 @@
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
-import { useCreatePlayer } from "@/hooks/usePlayers";
+import { useCreateManagement } from "@/hooks/useManagement";
 import { useSchoolLookup } from "@/hooks/useSchools";
-import { Position, Year } from "@/types/enums";
+import { ManagementRole, Year } from "@/types/enums";
 import {
-  getAllPositions,
-  getPositionDisplayName,
-} from "@/types/enums/position.enum";
+  getAllManagementRoles,
+  getManagementRoleDisplayName,
+} from "@/types/enums/management-role.enum";
 import { getAllYears, getYearDisplayName } from "@/types/enums/year.enum";
 import { LoadingSpinner } from "@/components/common/Loading/LoadingSpinner";
-import styles from "./PlayerForm.module.css";
+import styles from "./ManagementForm.module.css";
 
-const playerSchema = z.object({
+const managementSchema = z.object({
   name: z.string().min(1, "Name is required").max(100),
   age: z.number().min(10).max(100),
   height: z.number().min(100).max(250),
-  position: z.enum(Position),
-  jerseyNumber: z.number().min(0).max(99),
+  managementRole: z.enum(ManagementRole),
   year: z.enum(Year).optional(),
   school: z.string().optional(),
   imgUrl: z.url("Must be a valid URL").min(1, "Image URL is required"),
 });
 
-type PlayerFormData = z.infer<typeof playerSchema>;
+type ManagementFormData = z.infer<typeof managementSchema>;
 
-interface PlayerFormProps {
+interface ManagementFormProps {
   onSuccess: () => void;
   onCancel: () => void;
 }
 
-/**
- * Player Form Component
- * Form for creating new players
- * Uses react-hook-form with zod validation
- */
-export const PlayerForm = ({ onSuccess, onCancel }: PlayerFormProps) => {
+export const ManagementForm = ({
+  onSuccess,
+  onCancel,
+}: ManagementFormProps) => {
   const { data: schools, isLoading: loadingSchools } = useSchoolLookup();
-  const createPlayer = useCreatePlayer();
+  const createManagement = useCreateManagement();
 
   const {
     register,
     handleSubmit,
     formState: { errors, isSubmitting },
-  } = useForm<PlayerFormData>({
-    resolver: zodResolver(playerSchema),
+  } = useForm<ManagementFormData>({
+    resolver: zodResolver(managementSchema),
     defaultValues: {
-      position: Position.NONE,
+      managementRole: ManagementRole.MANAGER,
       year: Year.NONSTUDENT,
     },
   });
 
-  const onSubmit = async (data: PlayerFormData) => {
+  const onSubmit = async (data: ManagementFormData) => {
     try {
       const schoolId = data.school
         ? schools?.find((s) => s.name === data.school)?.id
         : null;
-      await createPlayer.mutateAsync({
+      await createManagement.mutateAsync({
         name: data.name,
         age: data.age,
         height: data.height,
-        position: data.position,
-        jerseyNumber: data.jerseyNumber,
+        managementRole: data.managementRole,
         year: data.year || Year.NONSTUDENT,
         schoolId: schoolId || 0,
         imgUrl: data.imgUrl || "",
       });
       onSuccess();
     } catch (error) {
-      console.error("Failed to create player:", error);
+      console.error("Failed to create management member:", error);
     }
   };
 
@@ -87,7 +83,7 @@ export const PlayerForm = ({ onSuccess, onCancel }: PlayerFormProps) => {
           type="text"
           {...register("name")}
           className={styles.input}
-          placeholder="Enter player name"
+          placeholder="Enter name"
         />
         {errors.name && (
           <span className={styles.error}>{errors.name.message}</span>
@@ -131,40 +127,21 @@ export const PlayerForm = ({ onSuccess, onCancel }: PlayerFormProps) => {
         </div>
       </div>
 
-      {/* Position & Jersey Number */}
-      <div className={styles.row}>
-        <div className={styles.field}>
-          <label className={styles.label}>
-            Position <span className={styles.required}>*</span>
-          </label>
-          <select {...register("position")} className={styles.select}>
-            {getAllPositions().map((pos) => (
-              <option key={pos} value={pos}>
-                {getPositionDisplayName(pos)}
-              </option>
-            ))}
-          </select>
-          {errors.position && (
-            <span className={styles.error}>{errors.position.message}</span>
-          )}
-        </div>
-
-        <div className={styles.field}>
-          <label className={styles.label}>
-            Jersey # <span className={styles.required}>*</span>
-          </label>
-          <input
-            type="number"
-            {...register("jerseyNumber", { valueAsNumber: true })}
-            className={styles.input}
-            placeholder="0-99"
-            min="0"
-            max="99"
-          />
-          {errors.jerseyNumber && (
-            <span className={styles.error}>{errors.jerseyNumber.message}</span>
-          )}
-        </div>
+      {/* Management Role */}
+      <div className={styles.field}>
+        <label className={styles.label}>
+          Role <span className={styles.required}>*</span>
+        </label>
+        <select {...register("managementRole")} className={styles.select}>
+          {getAllManagementRoles().map((role) => (
+            <option key={role} value={role}>
+              {getManagementRoleDisplayName(role)}
+            </option>
+          ))}
+        </select>
+        {errors.managementRole && (
+          <span className={styles.error}>{errors.managementRole.message}</span>
+        )}
       </div>
 
       {/* Year & School */}
@@ -222,7 +199,7 @@ export const PlayerForm = ({ onSuccess, onCancel }: PlayerFormProps) => {
           type="submit"
           className={styles.submitButton}
           disabled={isSubmitting}>
-          {isSubmitting ? "Creating..." : "Create Player"}
+          {isSubmitting ? "Creating..." : "Create Management Member"}
         </button>
       </div>
     </form>

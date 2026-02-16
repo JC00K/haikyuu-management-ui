@@ -3,6 +3,8 @@ import { Plus } from "lucide-react";
 import { useCoaches } from "@/hooks/useCoaches";
 import { CharacterCard } from "@/components/common/Card/Character/CharacterCard";
 import { LoadingSpinner } from "@/components/common/Loading/LoadingSpinner";
+import { Modal } from "@/components/common/Modal/Modal";
+import { CoachForm } from "@/components/forms/CoachForm/CoachForm";
 import { CoachRole, CoachingStyle } from "@/types/enums";
 import {
   getCoachRoleDisplayName,
@@ -27,6 +29,7 @@ const CoachesPage = () => {
   const [selectedStyle, setSelectedStyle] = useState<CoachingStyle | "ALL">(
     "ALL",
   );
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   // Filter coaches
   const filteredCoaches = coaches?.filter((coach) => {
@@ -66,7 +69,9 @@ const CoachesPage = () => {
           <h1 className={styles.title}>Coaches</h1>
           <p className={styles.subtitle}>Manage your coaching staff</p>
         </div>
-        <button className={styles.addButton}>
+        <button
+          className={styles.addButton}
+          onClick={() => setIsModalOpen(true)}>
           <Plus size={20} />
           <span>Add Coach</span>
         </button>
@@ -175,6 +180,20 @@ const CoachesPage = () => {
           </button>
         </div>
       )}
+
+      {/* Add Coach Modal */}
+      <Modal
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+        title="Add New Coach"
+        size="lg">
+        <CoachForm
+          onSuccess={() => {
+            setIsModalOpen(false);
+          }}
+          onCancel={() => setIsModalOpen(false)}
+        />
+      </Modal>
     </div>
   );
 };

@@ -1,7 +1,10 @@
+import { useState } from "react";
 import { Plus } from "lucide-react";
 import { useFans } from "@/hooks/useFans";
 import { CharacterCard } from "@/components/common/Card/Character/CharacterCard";
 import { LoadingSpinner } from "@/components/common/Loading/LoadingSpinner";
+import { Modal } from "@/components/common/Modal/Modal";
+import { FanForm } from "@/components/forms/FanForm/FanForm";
 import styles from "./FansPage.module.css";
 
 /**
@@ -13,6 +16,7 @@ import styles from "./FansPage.module.css";
  */
 const FansPage = () => {
   const { data: fans, isLoading, error } = useFans();
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   if (isLoading) {
     return <LoadingSpinner size="lg" text="Loading fans..." />;
@@ -37,7 +41,9 @@ const FansPage = () => {
             Volleyball enthusiasts and supporters
           </p>
         </div>
-        <button className={styles.addButton}>
+        <button
+          className={styles.addButton}
+          onClick={() => setIsModalOpen(true)}>
           <Plus size={20} />
           <span>Add Fan</span>
         </button>
@@ -75,6 +81,20 @@ const FansPage = () => {
           </button>
         </div>
       )}
+
+      {/* Add Fan Modal */}
+      <Modal
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+        title="Add New Fan"
+        size="lg">
+        <FanForm
+          onSuccess={() => {
+            setIsModalOpen(false);
+          }}
+          onCancel={() => setIsModalOpen(false)}
+        />
+      </Modal>
     </div>
   );
 };
