@@ -80,7 +80,7 @@
 
 .cancelButton {
   padding: var(--spacing-sm) var(--spacing-lg);
-  background: white;
+  background: var(--color-bg);
   color: var(--color-text);
   border: 2px solid var(--color-divider);
   border-radius: var(--radius-md);

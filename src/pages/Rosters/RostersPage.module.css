@@ -47,7 +47,7 @@
 
 /* Stats Bar */
 .statsBar {
-  background: white;
+  background: var(--color-bg-card);
   padding: var(--spacing-lg);
   border-radius: var(--radius-lg);
   box-shadow: var(--shadow-card);
@@ -126,7 +126,7 @@
 .empty {
   text-align: center;
   padding: var(--spacing-xxl);
-  background: white;
+  background: var(--color-bg-card);
   border-radius: var(--radius-lg);
   box-shadow: var(--shadow-card);
 }
@@ -172,7 +172,7 @@
 .error {
   text-align: center;
   padding: var(--spacing-xxl);
-  background: white;
+  background: var(--color-bg-card);
   border-radius: var(--radius-lg);
   box-shadow: var(--shadow-card);
   border-left: 4px solid #d32f2f;

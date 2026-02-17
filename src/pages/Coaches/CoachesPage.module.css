@@ -51,7 +51,7 @@
 
 /* Stats Bar */
 .statsBar {
-  background: white;
+  background: var(--color-bg-card);
   padding: var(--spacing-lg);
   border-radius: var(--radius-lg);
   box-shadow: var(--shadow-card);
@@ -112,7 +112,7 @@
 
 /* Filters */
 .filters {
-  background: white;
+  background: var(--color-bg-card);
   padding: var(--spacing-lg);
   border-radius: var(--radius-lg);
   box-shadow: var(--shadow-card);
@@ -142,7 +142,7 @@
   font-size: 0.875rem;
   cursor: pointer;
   transition: border-color var(--transition-fast);
-  background: white;
+  background: var(--color-bg-card);
   min-width: 200px;
 }
 
@@ -162,7 +162,7 @@
 .empty {
   text-align: center;
   padding: var(--spacing-xxl);
-  background: white;
+  background: var(--color-bg-card);
   border-radius: var(--radius-lg);
   box-shadow: var(--shadow-card);
 }
@@ -208,7 +208,7 @@
 .error {
   text-align: center;
   padding: var(--spacing-xxl);
-  background: #fff5f5;
+  background: var(--color-bg-error);
   border-radius: var(--radius-lg);
   border: 2px solid var(--color-error);
 }

@@ -11,9 +11,12 @@ import {
   Heart,
   GraduationCap,
   ClipboardList,
+  Sun,
+  Moon,
 } from "lucide-react";
 import { useState } from "react";
 import { cn } from "@/lib/utils";
+import { useTheme } from "@/context/ThemeContext";
 import styles from "./Navigation.module.css";
 
 /**
@@ -28,6 +31,7 @@ import styles from "./Navigation.module.css";
 export const Navigation = () => {
   const location = useLocation();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const { isDark, toggleTheme } = useTheme();
 
   const navLinks = [
     { to: "/", label: "Home", icon: Home },
@@ -79,6 +83,14 @@ export const Navigation = () => {
           })}
         </ul>
 
+        {/* Theme Toggle (Desktop) */}
+        <button
+          className={styles.themeToggle}
+          onClick={toggleTheme}
+          aria-label={isDark ? "Switch to light mode" : "Switch to dark mode"}>
+          {isDark ? <Sun size={20} /> : <Moon size={20} />}
+        </button>
+
         {/* Mobile Menu Toggle */}
         <button
           className={styles.mobileToggle}
@@ -109,6 +121,20 @@ export const Navigation = () => {
                 </li>
               );
             })}
+            <li>
+              <button
+                className={styles.mobileThemeToggle}
+                onClick={() => {
+                  toggleTheme();
+                  closeMobileMenu();
+                }}
+                aria-label={
+                  isDark ? "Switch to light mode" : "Switch to dark mode"
+                }>
+                {isDark ? <Sun size={20} /> : <Moon size={20} />}
+                <span>{isDark ? "Light Mode" : "Dark Mode"}</span>
+              </button>
+            </li>
           </ul>
         </div>
       )}

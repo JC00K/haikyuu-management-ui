@@ -14,7 +14,7 @@
 }
 
 .modal {
-  background: white;
+  background: var(--color-bg-card);
   border-radius: var(--radius-lg);
   box-shadow: var(--shadow-xl);
   max-height: 90vh;

@@ -135,7 +135,7 @@
 }
 
 .infoGrid {
-  background: white;
+  background: var(--color-bg-card);
   padding: var(--spacing-lg);
   border-radius: var(--radius-lg);
   box-shadow: var(--shadow-card);
@@ -168,7 +168,7 @@
 .error {
   text-align: center;
   padding: var(--spacing-xxl);
-  background: #fff5f5;
+  background: var(--color-bg-error);
   border-radius: var(--radius-lg);
   border: 2px solid var(--color-error);
 }
