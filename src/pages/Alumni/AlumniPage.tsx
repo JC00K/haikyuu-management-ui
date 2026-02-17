@@ -3,6 +3,8 @@ import { Plus } from "lucide-react";
 import { useAlumni, useFormerPlayers } from "@/hooks/useAlumni";
 import { CharacterCard } from "@/components/common/Card/Character/CharacterCard";
 import { LoadingSpinner } from "@/components/common/Loading/LoadingSpinner";
+import { Modal } from "@/components/common/Modal/Modal";
+import { AlumniForm } from "@/components/forms/AlumniForm/AlumniForm";
 import styles from "./AlumniPage.module.css";
 
 /**
@@ -14,6 +16,7 @@ import styles from "./AlumniPage.module.css";
  */
 const AlumniPage = () => {
   const [showFormerPlayersOnly, setShowFormerPlayersOnly] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const {
     data: allAlumni,
@@ -54,7 +57,9 @@ const AlumniPage = () => {
           <h1 className={styles.title}>Alumni</h1>
           <p className={styles.subtitle}>Former players and team members</p>
         </div>
-        <button className={styles.addButton}>
+        <button
+          className={styles.addButton}
+          onClick={() => setIsModalOpen(true)}>
           <Plus size={20} />
           <span>Add Alumni</span>
         </button>
@@ -126,6 +131,20 @@ const AlumniPage = () => {
           </button>
         </div>
       )}
+
+      {/* Add Alumni Modal */}
+      <Modal
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+        title="Add New Alumni"
+        size="lg">
+        <AlumniForm
+          onSuccess={() => {
+            setIsModalOpen(false);
+          }}
+          onCancel={() => setIsModalOpen(false)}
+        />
+      </Modal>
     </div>
   );
 };

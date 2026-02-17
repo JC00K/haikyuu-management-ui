@@ -3,6 +3,8 @@ import { Plus } from "lucide-react";
 import { useManagement } from "@/hooks/useManagement";
 import { CharacterCard } from "@/components/common/Card/Character/CharacterCard";
 import { LoadingSpinner } from "@/components/common/Loading/LoadingSpinner";
+import { Modal } from "@/components/common/Modal/Modal";
+import { ManagementForm } from "@/components/forms/ManagementForm/ManagementForm";
 import { ManagementRole } from "@/types/enums";
 import {
   getManagementRoleDisplayName,
@@ -22,6 +24,7 @@ const ManagementPage = () => {
   const [selectedRole, setSelectedRole] = useState<ManagementRole | "ALL">(
     "ALL",
   );
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   // Filter management by role
   const filteredManagement = management?.filter(
@@ -61,7 +64,9 @@ const ManagementPage = () => {
             Manage team administration and staff
           </p>
         </div>
-        <button className={styles.addButton}>
+        <button
+          className={styles.addButton}
+          onClick={() => setIsModalOpen(true)}>
           <Plus size={20} />
           <span>Add Management</span>
         </button>
@@ -156,6 +161,20 @@ const ManagementPage = () => {
           </button>
         </div>
       )}
+
+      {/* Add Management Modal */}
+      <Modal
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+        title="Add New Management Member"
+        size="lg">
+        <ManagementForm
+          onSuccess={() => {
+            setIsModalOpen(false);
+          }}
+          onCancel={() => setIsModalOpen(false)}
+        />
+      </Modal>
     </div>
   );
 };

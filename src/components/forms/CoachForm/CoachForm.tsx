@@ -1,74 +1,77 @@
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
-import { useCreatePlayer } from "@/hooks/usePlayers";
+import { useCreateCoach } from "@/hooks/useCoaches";
 import { useSchoolLookup } from "@/hooks/useSchools";
-import { Position, Year } from "@/types/enums";
+import { CoachRole, CoachingStyle, Year } from "@/types/enums";
 import {
-  getAllPositions,
-  getPositionDisplayName,
-} from "@/types/enums/position.enum";
+  getAllCoachRoles,
+  getCoachRoleDisplayName,
+} from "@/types/enums/coach-role.enum";
+import {
+  getAllCoachingStyles,
+  getCoachingStyleDisplayName,
+} from "@/types/enums/coaching-style.enum";
 import { getAllYears, getYearDisplayName } from "@/types/enums/year.enum";
 import { LoadingSpinner } from "@/components/common/Loading/LoadingSpinner";
-import styles from "./PlayerForm.module.css";
+import styles from "./CoachForm.module.css";
 
-const playerSchema = z.object({
+const coachSchema = z.object({
   name: z.string().min(1, "Name is required").max(100),
   age: z.number().min(10).max(100),
   height: z.number().min(100).max(250),
-  position: z.enum(Position),
-  jerseyNumber: z.number().min(0).max(99),
+  coachRole: z.enum(CoachRole),
+  coachingStyle: z.enum(CoachingStyle),
+  isRetired: z.boolean(),
   year: z.enum(Year).optional(),
   school: z.string().optional(),
   imgUrl: z.url("Must be a valid URL").min(1, "Image URL is required"),
 });
 
-type PlayerFormData = z.infer<typeof playerSchema>;
+type CoachFormData = z.infer<typeof coachSchema>;
 
-interface PlayerFormProps {
+interface CoachFormProps {
   onSuccess: () => void;
   onCancel: () => void;
 }
 
-/**
- * Player Form Component
- * Form for creating new players
- * Uses react-hook-form with zod validation
- */
-export const PlayerForm = ({ onSuccess, onCancel }: PlayerFormProps) => {
+export const CoachForm = ({ onSuccess, onCancel }: CoachFormProps) => {
   const { data: schools, isLoading: loadingSchools } = useSchoolLookup();
-  const createPlayer = useCreatePlayer();
+  const createCoach = useCreateCoach();
 
   const {
     register,
     handleSubmit,
     formState: { errors, isSubmitting },
-  } = useForm<PlayerFormData>({
-    resolver: zodResolver(playerSchema),
+  } = useForm<CoachFormData>({
+    resolver: zodResolver(coachSchema),
     defaultValues: {
-      position: Position.NONE,
+      coachRole: CoachRole.HEAD,
+      coachingStyle: CoachingStyle.DEFENSE,
+      isRetired: false,
       year: Year.NONSTUDENT,
     },
   });
 
-  const onSubmit = async (data: PlayerFormData) => {
+  const onSubmit = async (data: CoachFormData) => {
     try {
       const schoolId = data.school
         ? schools?.find((s) => s.name === data.school)?.id
         : null;
-      await createPlayer.mutateAsync({
+      await createCoach.mutateAsync({
         name: data.name,
         age: data.age,
         height: data.height,
-        position: data.position,
-        jerseyNumber: data.jerseyNumber,
+        coachRole: data.coachRole,
+        coachingStyle: data.coachingStyle,
+        isRetired: data.isRetired,
         year: data.year || Year.NONSTUDENT,
         schoolId: schoolId || 0,
         imgUrl: data.imgUrl || "",
       });
       onSuccess();
     } catch (error) {
-      console.error("Failed to create player:", error);
+      console.error("Failed to create coach:", error);
     }
   };
 
@@ -87,7 +90,7 @@ export const PlayerForm = ({ onSuccess, onCancel }: PlayerFormProps) => {
           type="text"
           {...register("name")}
           className={styles.input}
-          placeholder="Enter player name"
+          placeholder="Enter coach name"
         />
         {errors.name && (
           <span className={styles.error}>{errors.name.message}</span>
@@ -131,38 +134,37 @@ export const PlayerForm = ({ onSuccess, onCancel }: PlayerFormProps) => {
         </div>
       </div>
 
-      {/* Position & Jersey Number */}
+      {/* Coach Role & Coaching Style */}
       <div className={styles.row}>
         <div className={styles.field}>
           <label className={styles.label}>
-            Position <span className={styles.required}>*</span>
+            Coach Role <span className={styles.required}>*</span>
           </label>
-          <select {...register("position")} className={styles.select}>
-            {getAllPositions().map((pos) => (
-              <option key={pos} value={pos}>
-                {getPositionDisplayName(pos)}
+          <select {...register("coachRole")} className={styles.select}>
+            {getAllCoachRoles().map((role) => (
+              <option key={role} value={role}>
+                {getCoachRoleDisplayName(role)}
               </option>
             ))}
           </select>
-          {errors.position && (
-            <span className={styles.error}>{errors.position.message}</span>
+          {errors.coachRole && (
+            <span className={styles.error}>{errors.coachRole.message}</span>
           )}
         </div>
 
         <div className={styles.field}>
           <label className={styles.label}>
-            Jersey # <span className={styles.required}>*</span>
+            Coaching Style <span className={styles.required}>*</span>
           </label>
-          <input
-            type="number"
-            {...register("jerseyNumber", { valueAsNumber: true })}
-            className={styles.input}
-            placeholder="0-99"
-            min="0"
-            max="99"
-          />
-          {errors.jerseyNumber && (
-            <span className={styles.error}>{errors.jerseyNumber.message}</span>
+          <select {...register("coachingStyle")} className={styles.select}>
+            {getAllCoachingStyles().map((style) => (
+              <option key={style} value={style}>
+                {getCoachingStyleDisplayName(style)}
+              </option>
+            ))}
+          </select>
+          {errors.coachingStyle && (
+            <span className={styles.error}>{errors.coachingStyle.message}</span>
           )}
         </div>
       </div>
@@ -191,6 +193,19 @@ export const PlayerForm = ({ onSuccess, onCancel }: PlayerFormProps) => {
             ))}
           </select>
         </div>
+      </div>
+
+      {/* Is Retired */}
+      <div className={styles.checkboxField}>
+        <input
+          type="checkbox"
+          {...register("isRetired")}
+          className={styles.checkbox}
+          id="isRetired"
+        />
+        <label htmlFor="isRetired" className={styles.label}>
+          Retired
+        </label>
       </div>
 
       {/* Image URL */}
@@ -222,7 +237,7 @@ export const PlayerForm = ({ onSuccess, onCancel }: PlayerFormProps) => {
           type="submit"
           className={styles.submitButton}
           disabled={isSubmitting}>
-          {isSubmitting ? "Creating..." : "Create Player"}
+          {isSubmitting ? "Creating..." : "Create Coach"}
         </button>
       </div>
     </form>
