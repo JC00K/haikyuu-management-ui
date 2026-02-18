@@ -9,7 +9,7 @@
 .hero {
   text-align: center;
   padding: var(--spacing-xxl) var(--spacing-md);
-  background: white;
+  background: var(--color-bg-card);
   border-radius: var(--radius-lg);
   margin-bottom: var(--spacing-xxl);
   box-shadow: var(--shadow-card);
@@ -75,7 +75,7 @@
 }
 
 .actionCard {
-  background: white;
+  background: var(--color-bg-card);
   padding: var(--spacing-lg);
   border-radius: var(--radius-lg);
   box-shadow: var(--shadow-card);
@@ -137,7 +137,7 @@
 
 /* Help Card */
 .helpCard {
-  background: white;
+  background: var(--color-bg-card);
   padding: var(--spacing-xl);
   border-radius: var(--radius-lg);
   box-shadow: var(--shadow-card);

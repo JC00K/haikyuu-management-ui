@@ -46,6 +46,8 @@
   --color-bg: #ffffff;
   --color-bg-paper: #f5f5f5;
   --color-bg-dark: #121212;
+  --color-bg-card: #ffffff;
+  --color-bg-error: #fff5f5;
 
   /* Text */
   --color-text: #1a1a1a;
@@ -84,6 +86,9 @@
   --transition-base: 200ms ease-in-out;
   --transition-slow: 300ms ease-in-out;
 
+  /* Spinner */
+  --color-spinner-track: rgba(0, 0, 0, 0.1);
+
   /* Z-index */
   --z-dropdown: 1000;
   --z-sticky: 1020;
@@ -93,6 +98,40 @@
   --z-popover: 1060;
   --z-tooltip: 1070;
   --z-ai-chat: 9999;
+}
+
+/* Dark Theme Overrides */
+[data-theme="dark"] {
+  /* Backgrounds */
+  --color-bg: #121212;
+  --color-bg-paper: #1e1e1e;
+  --color-bg-card: #1e1e1e;
+  --color-bg-error: #2d1515;
+
+  /* Text */
+  --color-text: #e0e0e0;
+  --color-text-secondary: #a0a0a0;
+  --color-text-disabled: #666666;
+  --color-text-inverse: #121212;
+
+  /* Secondary (headings become light on dark bg) */
+  --color-secondary: #e0e0e0;
+  --color-secondary-light: #2d2d2d;
+  --color-secondary-dark: #ffffff;
+
+  /* Dividers */
+  --color-divider: #333333;
+
+  /* Shadows */
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.3);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.4);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.4);
+  --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.4);
+  --shadow-card: 0 2px 8px rgba(0, 0, 0, 0.4);
+  --shadow-card-hover: 0 8px 16px rgba(0, 0, 0, 0.5);
+
+  /* Spinner */
+  --color-spinner-track: rgba(255, 255, 255, 0.1);
 }
 
 /* Base Styles */
@@ -246,7 +285,7 @@ button {
 
 /* Cards */
 .card {
-  background: white;
+  background: var(--color-bg-card);
   border-radius: var(--radius-lg);
   box-shadow: var(--shadow-card);
   transition:
@@ -346,8 +385,14 @@ select {
   border-radius: var(--radius-md);
   font-family: inherit;
   font-size: 1rem;
+  color: var(--color-text);
   transition: border-color var(--transition-fast);
-  background: white;
+  background: var(--color-bg);
+}
+
+select option {
+  background: var(--color-bg);
+  color: var(--color-text);
 }
 
 input:focus,
@@ -403,7 +448,7 @@ label {
 
 /* Loading Spinner */
 .spinner {
-  border: 3px solid rgba(0, 0, 0, 0.1);
+  border: 3px solid var(--color-spinner-track);
   border-top-color: var(--color-primary);
   border-radius: 50%;
   width: 40px;

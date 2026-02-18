@@ -38,7 +38,7 @@
   align-items: center;
   gap: var(--spacing-xs);
   padding: var(--spacing-sm) var(--spacing-md);
-  background: white;
+  background: var(--color-bg-card);
   color: var(--color-text);
   border: 2px solid var(--color-divider);
   border-radius: var(--radius-md);
@@ -145,7 +145,7 @@
 }
 
 .positionSlot {
-  background: white;
+  background: var(--color-bg-card);
   border-radius: var(--radius-md);
   padding: var(--spacing-md);
   min-height: 120px;
@@ -210,7 +210,7 @@
 }
 
 .benchPlayer {
-  background: white;
+  background: var(--color-bg-card);
   padding: var(--spacing-md);
   border-radius: var(--radius-md);
   box-shadow: var(--shadow-card);
