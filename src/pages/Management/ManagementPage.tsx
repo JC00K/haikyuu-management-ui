@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { Plus } from "lucide-react";
 import { useManagement } from "@/hooks/useManagement";
 import { CharacterCard } from "@/components/common/Card/Character/CharacterCard";
@@ -20,6 +21,7 @@ import styles from "./ManagementPage.module.css";
  * - Plus (add management button)
  */
 const ManagementPage = () => {
+  const navigate = useNavigate();
   const { data: management, isLoading, error } = useManagement();
   const [selectedRole, setSelectedRole] = useState<ManagementRole | "ALL">(
     "ALL",
@@ -139,10 +141,7 @@ const ManagementPage = () => {
             <CharacterCard
               key={member.id}
               character={member}
-              onClick={() => {
-                // TODO: Open management detail modal
-                console.log("Management clicked:", member);
-              }}
+              onClick={() => navigate(`/characters/${member.id}`)}
             />
           ))}
         </div>

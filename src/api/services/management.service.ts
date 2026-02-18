@@ -19,7 +19,7 @@ export const managementService = {
    */
 
   getById: async (id: number): Promise<ManagementDTO> => {
-    return get<ManagementDTO>(`/management/${id}`);
+    return get<ManagementDTO>(`/v1/management/${id}`);
   },
 
   /**

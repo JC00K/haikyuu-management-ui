@@ -18,7 +18,7 @@ export const coachService = {
    */
 
   getById: async (id: number): Promise<CoachDTO> => {
-    return get<CoachDTO>(`/coaches/${id}`);
+    return get<CoachDTO>(`/v1/coaches/${id}`);
   },
 
   /**

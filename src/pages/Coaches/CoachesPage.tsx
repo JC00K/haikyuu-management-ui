@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { Plus } from "lucide-react";
 import { useCoaches } from "@/hooks/useCoaches";
 import { CharacterCard } from "@/components/common/Card/Character/CharacterCard";
@@ -24,6 +25,7 @@ import styles from "./CoachesPage.module.css";
  * - Plus (add coach button)
  */
 const CoachesPage = () => {
+  const navigate = useNavigate();
   const { data: coaches, isLoading, error } = useCoaches();
   const [selectedRole, setSelectedRole] = useState<CoachRole | "ALL">("ALL");
   const [selectedStyle, setSelectedStyle] = useState<CoachingStyle | "ALL">(
@@ -158,10 +160,7 @@ const CoachesPage = () => {
             <CharacterCard
               key={coach.id}
               character={coach}
-              onClick={() => {
-                // TODO: Open coach detail modal
-                console.log("Coach clicked:", coach);
-              }}
+              onClick={() => navigate(`/characters/${coach.id}`)}
             />
           ))}
         </div>

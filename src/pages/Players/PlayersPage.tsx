@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { Plus } from "lucide-react";
 import { usePlayers } from "@/hooks/usePlayers";
 import { PlayerCard } from "@/components/common/Card/Player/PlayerCard";
@@ -23,6 +24,7 @@ import styles from "./PlayersPage.module.css";
  * - Plus (add player button)
  */
 const PlayersPage = () => {
+  const navigate = useNavigate();
   const { data: players, isLoading, error } = usePlayers();
   const [selectedPosition, setSelectedPosition] = useState<Position | "ALL">(
     "ALL",
@@ -141,10 +143,7 @@ const PlayersPage = () => {
             <PlayerCard
               key={player.id}
               player={player}
-              onClick={() => {
-                // TODO: Open player detail modal
-                console.log("Player clicked:", player);
-              }}
+              onClick={() => navigate(`/characters/${player.id}`)}
             />
           ))}
         </div>

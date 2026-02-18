@@ -27,7 +27,7 @@ export const playerService = {
    */
 
   getById: async (id: number): Promise<PlayerDTO> => {
-    return get<PlayerDTO>(`/players/${id}`);
+    return get<PlayerDTO>(`/v1/players/${id}`);
   },
 
   /**

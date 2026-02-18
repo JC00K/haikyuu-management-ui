@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { Plus } from "lucide-react";
 import { useFans } from "@/hooks/useFans";
 import { CharacterCard } from "@/components/common/Card/Character/CharacterCard";
@@ -15,6 +16,7 @@ import styles from "./FansPage.module.css";
  * - Plus (add fan button)
  */
 const FansPage = () => {
+  const navigate = useNavigate();
   const { data: fans, isLoading, error } = useFans();
   const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -64,9 +66,7 @@ const FansPage = () => {
             <CharacterCard
               key={fan.id}
               character={fan}
-              onClick={() => {
-                console.log("Fan clicked:", fan);
-              }}
+              onClick={() => navigate(`/characters/${fan.id}`)}
             />
           ))}
         </div>

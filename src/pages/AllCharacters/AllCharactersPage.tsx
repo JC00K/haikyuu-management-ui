@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { useCharacters } from "@/hooks/useCharacters";
 import { CharacterCard } from "@/components/common/Card/Character/CharacterCard";
 import { LoadingSpinner } from "@/components/common/Loading/LoadingSpinner";
@@ -12,6 +13,7 @@ import styles from "./AllCharactersPage.module.css";
  * Includes filtering by role
  */
 const AllCharactersPage = () => {
+  const navigate = useNavigate();
   const { data: characters, isLoading, error } = useCharacters();
   const [selectedRole, setSelectedRole] = useState<Role | "ALL">("ALL");
 
@@ -102,7 +104,11 @@ const AllCharactersPage = () => {
       {filteredCharacters && filteredCharacters.length > 0 ? (
         <div className={styles.grid}>
           {filteredCharacters.map((character) => (
-            <CharacterCard key={character.id} character={character} />
+            <CharacterCard
+              key={character.id}
+              character={character}
+              onClick={() => navigate(`/characters/${character.id}`)}
+            />
           ))}
         </div>
       ) : (

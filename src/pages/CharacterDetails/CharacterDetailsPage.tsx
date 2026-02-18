@@ -84,7 +84,7 @@ const CharacterDetailPage = () => {
     if (character.role === Role.PLAYER && player) {
       return [
         { label: "Position", value: getPositionDisplayName(player.position) },
-        { label: "Jersey Number", value: `#${player.jerseyNumber}` },
+        { label: "Jersey Number", value: player.jerseyNumber != null ? `#${player.jerseyNumber}` : "Not found" },
         {
           label: "Year",
           value: player.year ? getYearDisplayName(player.year) : "N/A",
@@ -157,7 +157,7 @@ const CharacterDetailPage = () => {
           <div className={styles.roleBadge}>{character.role}</div>
           <h1 className={styles.name}>{character.name}</h1>
           <div className={styles.basicInfo}>
-            <span>Age: {character.age}</span>
+            <span>Age: {character.age ?? "Not found"}</span>
             <span>•</span>
             <span>{formatHeight(character.height)}</span>
             {character.schoolName && (
@@ -207,16 +207,14 @@ const CharacterDetailPage = () => {
         <h2 className={styles.sectionTitle}>General Information</h2>
         <div className={styles.infoGrid}>
           <div className={styles.infoItem}>
-            <div className={styles.infoLabel}>Character ID</div>
-            <div className={styles.infoValue}>{character.id}</div>
-          </div>
-          <div className={styles.infoItem}>
             <div className={styles.infoLabel}>Role</div>
             <div className={styles.infoValue}>{character.role}</div>
           </div>
           <div className={styles.infoItem}>
             <div className={styles.infoLabel}>Age</div>
-            <div className={styles.infoValue}>{character.age} years</div>
+            <div className={styles.infoValue}>
+              {character.age != null ? `${character.age} years` : "Not found"}
+            </div>
           </div>
           <div className={styles.infoItem}>
             <div className={styles.infoLabel}>Height</div>

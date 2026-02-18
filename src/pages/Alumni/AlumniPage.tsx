@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { Plus } from "lucide-react";
 import { useAlumni, useFormerPlayers } from "@/hooks/useAlumni";
 import { CharacterCard } from "@/components/common/Card/Character/CharacterCard";
@@ -15,6 +16,7 @@ import styles from "./AlumniPage.module.css";
  * - Plus (add alumni button)
  */
 const AlumniPage = () => {
+  const navigate = useNavigate();
   const [showFormerPlayersOnly, setShowFormerPlayersOnly] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -109,10 +111,7 @@ const AlumniPage = () => {
             <CharacterCard
               key={member.id}
               character={member}
-              onClick={() => {
-                // TODO: Open alumni detail modal
-                console.log("Alumni clicked:", member);
-              }}
+              onClick={() => navigate(`/characters/${member.id}`)}
             />
           ))}
         </div>

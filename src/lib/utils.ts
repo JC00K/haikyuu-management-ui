@@ -15,7 +15,8 @@ export function cn(...inputs: ClassValue[]) {
  * Format height in cm with unit
  * @example formatHeight(175.5) => "175.5 cm"
  */
-export function formatHeight(height: number): string {
+export function formatHeight(height: number | null | undefined): string {
+  if (height == null) return "Not found";
   return `${height} cm`;
 }
 
